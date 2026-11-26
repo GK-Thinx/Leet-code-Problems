@@ -1,0 +1,11 @@
+class Solution:
+    def combinationSum4(self, nums: list[int], target: int) -> int:
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        for t in range(1, target + 1):
+            total = 0
+            for n in nums:
+                if t >= n:
+                    total += dp[t - n]
+            dp[t] = total
+        return dp[target]
