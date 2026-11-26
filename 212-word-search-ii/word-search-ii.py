@@ -4,24 +4,24 @@ class Solution:
         trie = {}
         for w in words:
             node = trie
-            for ch in w:
-                node = node.setdefault(ch, {})
+            for c in w:
+                node = node.setdefault(c, {})
             node['#'] = w
         res = []
         def dfs(i, j, node):
-            ch = board[i][j]
-            nxt = node[ch]
+            c = board[i][j]
+            nxt = node[c]
             if '#' in nxt:
                 res.append(nxt['#'])
                 del nxt['#']
-            board[i][j] = '#'
+            board[i][j] = '*'
             for di, dj in ((1,0),(-1,0),(0,1),(0,-1)):
-                ni, nj = i + di, j + dj
-                if 0 <= ni < m and 0 <= nj < n and board[ni][nj] in nxt:
+                ni, nj = i+di, j+dj
+                if 0<=ni<m and 0<=nj<n and board[ni][nj] in nxt:
                     dfs(ni, nj, nxt)
-            board[i][j] = ch
+            board[i][j] = c
             if not nxt:
-                del node[ch]
+                del node[c]
         for i in range(m):
             for j in range(n):
                 if board[i][j] in trie:
