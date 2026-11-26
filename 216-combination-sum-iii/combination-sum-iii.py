@@ -9,7 +9,7 @@ class Solution:
             for i in range(start, 10):
                 if total + i > n:
                     break
-                if 9 - i + 1 + len(path) < k:
+                if 10 - i < k - len(path):
                     break
                 path.append(i)
                 backtrack(i + 1, path, total + i)
