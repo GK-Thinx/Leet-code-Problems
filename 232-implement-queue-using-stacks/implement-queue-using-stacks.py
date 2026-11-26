@@ -1,21 +1,18 @@
 class MyQueue:
-
     def __init__(self):
-        self.input = []
-        self.output = []
-
+        self.in_stack = []
+        self.out_stack = []
     def push(self, x: int) -> None:
-        self.input.append(x)
-
+        self.in_stack.append(x)
     def pop(self) -> int:
-        self.peek()  # Ensure output stack has the current front
-        return self.output.pop()
-
+        if not self.out_stack:
+            while self.in_stack:
+                self.out_stack.append(self.in_stack.pop())
+        return self.out_stack.pop()
     def peek(self) -> int:
-        if not self.output:  # Transfer elements if output stack is empty
-            while self.input:
-                self.output.append(self.input.pop())
-        return self.output[-1]
-
+        if not self.out_stack:
+            while self.in_stack:
+                self.out_stack.append(self.in_stack.pop())
+        return self.out_stack[-1]
     def empty(self) -> bool:
-        return not self.input and not self.output
+        return not self.in_stack and not self.out_stack
