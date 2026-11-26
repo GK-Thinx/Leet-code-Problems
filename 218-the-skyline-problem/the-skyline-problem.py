@@ -11,9 +11,9 @@ class Solution:
         for x, neg_h, r in events:
             if neg_h:
                 heapq.heappush(heap, (neg_h, r))
-            while heap and heap[0][1] <= x:
+            while heap[0][1] <= x:
                 heapq.heappop(heap)
-            cur = -heap[0][0] if heap else 0
-            if not res or res[-1][1] != cur:
+            cur = -heap[0][0]
+            if not res or cur != res[-1][1]:
                 res.append([x, cur])
         return res
