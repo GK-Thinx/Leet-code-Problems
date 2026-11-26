@@ -1,19 +1,16 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution:
     def removeElements(self, head, val):
-        """
-        :type head: ListNode
-        :type val: int
-        :rtype: ListNode
-        """
-        
-        dummy_head = ListNode(-1)
-        dummy_head.next = head
-        
-        current_node = dummy_head
-        while current_node.next != None:
-            if current_node.next.val == val:
-                current_node.next = current_node.next.next
+        dummy = ListNode(0, head)
+        prev = dummy
+        cur = head
+        while cur:
+            if cur.val == val:
+                prev.next = cur.next
             else:
-                current_node = current_node.next
-                
-        return dummy_head.next
+                prev = cur
+            cur = cur.next
+        return dummy.next
