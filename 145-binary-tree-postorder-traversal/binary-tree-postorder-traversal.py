@@ -1,18 +1,14 @@
 class Solution:
-    # @param {TreeNode} root
-    # @return {integer[]}
     def postorderTraversal(self, root):
-        traversal, stack = [], [(root, False)]
+        if not root:
+            return []
+        stack = [root]
+        res = []
         while stack:
-            node, visited = stack.pop()
-            if node:
-                if visited:
-                    # add to result if visited
-                    traversal.append(node.val)
-                else:
-                    # post-order
-                    stack.append((node, True))
-                    stack.append((node.right, False))
-                    stack.append((node.left, False))
-
-        return traversal
+            node = stack.pop()
+            res.append(node.val)
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
+        return res[::-1]
