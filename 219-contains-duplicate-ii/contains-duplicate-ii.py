@@ -1,13 +1,10 @@
 class Solution:
-    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        window = set()
-        for i in range(len(nums)):
-            if nums[i] in window:
+    def containsNearbyDuplicate(self, nums: list[int], k: int) -> bool:
+        s=set()
+        for i,num in enumerate(nums):
+            if num in s:
                 return True
-            
-            window.add(nums[i])
-            
-            if len(window) > k:
-                window.remove(nums[i-k])
-        
+            s.add(num)
+            if i>=k:
+                s.remove(nums[i-k])
         return False
