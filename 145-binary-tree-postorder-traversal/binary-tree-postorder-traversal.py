@@ -2,10 +2,10 @@ class Solution:
     def postorderTraversal(self, root):
         if not root:
             return []
-        stack = [root]
-        res = []
+        stack=[root]
+        res=[]
         while stack:
-            node = stack.pop()
+            node=stack.pop()
             res.append(node.val)
             if node.left:
                 stack.append(node.left)
