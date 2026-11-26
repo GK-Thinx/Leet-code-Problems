@@ -1,15 +1,15 @@
 class Solution:
     def shortestPalindrome(self, s: str) -> str:
         if not s:
-            return ""
+            return s
         rev = s[::-1]
-        combined = s + "#" + rev
-        lps = [0] * len(combined)
-        for i in range(1, len(combined)):
+        t = s + "#" + rev
+        lps = [0] * len(t)
+        for i in range(1, len(t)):
             j = lps[i - 1]
-            while j > 0 and combined[i] != combined[j]:
+            while j > 0 and t[i] != t[j]:
                 j = lps[j - 1]
-            if combined[i] == combined[j]:
+            if t[i] == t[j]:
                 j += 1
             lps[i] = j
         add = rev[:len(s) - lps[-1]]
